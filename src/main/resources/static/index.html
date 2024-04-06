@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Real Time Chat</title>
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body>
+    <div id="username">
+        <form id="usernameForm" name="usernameForm">
+            <h2>Enter your username</h2>
+            <label for="usernameInput"><input type="text" id="usernameInput" placeholder="Enter your username" autocomplete="off"></label>
+            <button type="submit" >Submit</button>
+        </form>
+    </div>
+
+    <div id="chat" class="hidden">
+        <div id="container">
+            <div id="connecting">
+                Connecting...
+            </div>
+
+            <ul id="messages"></ul>
+
+            <form id="messageForm" name="messageForm">
+                <input type="text" id="messageInput" name="message" placeholder="Enter your message" autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
