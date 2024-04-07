@@ -7,6 +7,7 @@ plugins {
 group = 'me.aksharpatel'
 version = '1'
 
+
 java {
     sourceCompatibility = '17'
 }
@@ -28,7 +29,6 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    runtimeOnly 'org.springframework.boot:spring-boot-docker-compose'
 }
 
 tasks.named('test') {
@@ -44,14 +44,7 @@ tasks.register('run', JavaExec) {
     mainClass = 'me.aksharpatel.basicrealtimechat.BasicRealTimeChatApplication'
 }
 
-tasks.register('fatJar', Jar) {
+tasks.named('bootJar') {
     archiveBaseName = 'basic-real-time-chat'
     archiveVersion = ''
-
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    manifest {
-        attributes 'Main-Class': 'me.aksharpatel.basicrealtimechat.BasicRealTimeChatApplication'
-    }
-    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
