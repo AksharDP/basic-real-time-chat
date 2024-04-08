@@ -52,9 +52,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100vh;
     color: #fff;
+}
+
+#container {
+    width: 400px;
+    height: 100vh;
+    background-color: #282b30;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#messageContainer {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+#messageContainer::-webkit-scrollbar {
+
+
 }
 
 #connecting {
@@ -67,7 +88,22 @@ body {
     margin: 0;
 }
 
-#messages li {
+.event-message {
+    margin-bottom: 20px;
+}
+
+.chat-message {
+    margin-bottom: 20px;
+}
+
+.chat-message p {
+    margin: 0;
+}
+
+#messageSender {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
@@ -75,8 +111,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    margin-bottom: 10px;
-    width: 200px;
+    width: 300px;
     text-align: center;
     font-size: 16px;
     color: #36393e;

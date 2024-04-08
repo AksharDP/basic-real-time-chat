@@ -7,12 +7,15 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#messageInput');
 var messageArea = document.querySelector('#messages');
 var connectingElement = document.querySelector('#connecting');
+var messageSender = document.querySelector('#messageSender');
 
 var stompClient = null;
 var username = null;
 
 var colors = [
-    '#2196F3', '#32c787', '#00BCD4', '#ff5652', '#ffc107', '#ff85af', '#FF9800', '#39bbb0', '#c7c7c7', '#9c9c9c'
+    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+    '#ffc107', '#ff85af', '#FF9800', '#39bbb0',
+    '#cddc39', '#ff5722', '#795548', '#607d8b'
 ]
 
 
@@ -45,33 +48,26 @@ function onMessageReceived(payload) {
 
     var messageElement = document.createElement('li');
 
+    let spanMessage = document.createElement('span');
+    let messageSenderName = document.createTextNode(message.sender);
+    spanMessage.style['background-color'] = getAvatarColor(message.sender);
+    spanMessage.appendChild(messageSenderName);
+    messageElement.appendChild(spanMessage);
+
     if(message.type === 'JOIN') {
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
+        messageElement.appendChild(document.createTextNode(' joined!'));
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
+        messageElement.appendChild(document.createTextNode(' left!'));
     } else {
         messageElement.classList.add('chat-message');
 
-        var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
-        avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-        messageElement.appendChild(avatarElement);
-
-        var usernameElement = document.createElement('span');
-        var usernameText = document.createTextNode(message.sender);
-        usernameElement.appendChild(usernameText);
-        messageElement.appendChild(usernameElement);
+        let textElement = document.createElement('p');
+        let messageText = document.createTextNode(message.content);
+        textElement.appendChild(messageText);
+        messageElement.appendChild(textElement);
     }
-
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
-
-    messageElement.appendChild(textElement);
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
@@ -100,6 +96,7 @@ function connect(event) {
     if(username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
+
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);

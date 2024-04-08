@@ -17,16 +17,20 @@
 
     <div id="chat" class="hidden">
         <div id="container">
-            <div id="connecting">
-                Connecting...
+            <div id="messageContainer">
+                <div id="connecting">
+                    Connecting...
+                </div>
+
+                <ul id="messages"></ul>
             </div>
 
-            <ul id="messages"></ul>
-
-            <form id="messageForm" name="messageForm">
-                <input type="text" id="messageInput" name="message" placeholder="Enter your message" autocomplete="off">
-                <button type="submit">Send</button>
-            </form>
+            <div id="messageSender">
+                <form id="messageForm" name="messageForm">
+                    <input type="text" id="messageInput" name="message" placeholder="Enter your message" autocomplete="off">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
