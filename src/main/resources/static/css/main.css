@@ -80,10 +80,13 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .event-message {
     margin-bottom: 20px;
+    text-align: center;
+    color: darkgray;
 }
 
 .chat-message {
