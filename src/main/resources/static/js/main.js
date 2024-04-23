@@ -51,6 +51,7 @@ function onMessageReceived(payload) {
     let spanMessage = document.createElement('span');
     let messageSenderName = document.createTextNode(message.sender);
     spanMessage.style['background-color'] = getAvatarColor(message.sender);
+
     spanMessage.appendChild(messageSenderName);
     messageElement.appendChild(spanMessage);
 
@@ -62,11 +63,22 @@ function onMessageReceived(payload) {
         messageElement.appendChild(document.createTextNode(' left!'));
     } else {
         messageElement.classList.add('chat-message');
-
+        let messageWrapper = document.createElement('div');
         let textElement = document.createElement('p');
         let messageText = document.createTextNode(message.content);
+        if (message.sender === username) {
+            console.log("current user");
+            textElement.classList.add('currentUserMessage');
+            messageElement.classList.add('marginLeft');
+
+        } else {
+            textElement.classList.add('otherUserMessage');
+            messageElement.classList.add('marginRight');
+        }
         textElement.appendChild(messageText);
-        messageElement.appendChild(textElement);
+        messageWrapper.appendChild(textElement);
+        // create a div around the textElement
+        messageElement.appendChild(messageWrapper);
     }
 
     messageArea.appendChild(messageElement);

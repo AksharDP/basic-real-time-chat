@@ -91,10 +91,35 @@ body {
 
 .chat-message {
     margin-bottom: 20px;
+    width: 100%;
 }
 
-.chat-message p {
+.chat-message span {
     margin: 0;
+}
+
+.marginLeft {
+    margin-left: auto;
+    width: max-content;
+}
+
+.marginRight {
+    margin-right: auto;
+    width: max-content;
+}
+
+.currentUserMessage {
+    background-color: #2a9d8f;
+    border-radius: 15px 15px 0 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+.otherUserMessage {
+    background-color: #219ebc;
+    border-radius: 15px 15px 15px 0;
+    padding: 10px;
+    text-align: center;
 }
 
 #messageSender {
@@ -109,7 +134,6 @@ body {
     border-radius: 5px;
     border: none;
     width: 300px;
-    text-align: center;
     font-size: 16px;
     color: #36393e;
 }
